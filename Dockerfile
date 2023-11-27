@@ -1,5 +1,5 @@
 # pip dependencies install stage
-FROM python:3.11-slim-bookworm as builder
+FROM python:3.11.6-bookworm as builder
 
 # See `cryptography` pin comment in requirements.txt
 ARG CRYPTOGRAPHY_DONT_BUILD_RUST=1
@@ -29,7 +29,7 @@ RUN pip install --target=/dependencies playwright~=1.39 \
     || echo "WARN: Failed to install Playwright. The application can still run, but the Playwright option will be disabled."
 
 # Final image stage
-FROM python:3.11-slim-bookworm
+FROM python:3.11.6-bookworm
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libxslt1.1 \
